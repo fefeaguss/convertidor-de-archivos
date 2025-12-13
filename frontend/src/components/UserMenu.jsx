@@ -1,10 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useState, useRef, useEffect, use } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiUser, FiSettings, FiUsers, FiEdit, FiZap, FiLogOut } from 'react-icons/fi';
+import { MdWorkspacePremium } from "react-icons/md";
 
 export default function UserMenu({ user, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const Navigate = useNavigate();
+
+  const navigatePerfil = () => {
+    Navigate('/perfil');
+  }
+  const navigatePremium = () => {
+    Navigate('/premium');
+  }
+
 
 
   const toggleMenu = () => setIsOpen(prev => !prev);
@@ -36,13 +46,16 @@ export default function UserMenu({ user, onLogout }) {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-[220px] bg-white rounded-lg shadow-lg z-50 p-2 text-sm">
           <div className="px-2 py-3 font-medium text-gray-700 truncate">{user?.name || 'Invitado'}</div>
-          <a href="/cuenta" className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded">
-            <FiSettings /> Configuración de la cuenta
-          </a>
+
+          <button onClick={navigatePerfil} className="flex items-center gap-2 px-2 py-3 w-full text-naranjamandarina hover:bg-gray-100 rounded">
+            <FiUser />  Perfil                                                                                          
+          </button>
+
+      
           
-          <a href="/premium" className="flex items-center gap-2 px-2 py-3 hover:bg-gray-100 rounded text-purple-600 font-semibold">
-            ⭐ Mejora a Premium
-          </a>
+          <button onClick={navigatePremium}  className="flex items-center gap-2 px-2 py-3 w-full hover:bg-gray-100 rounded text-purple-600 font-semibold">
+            <MdWorkspacePremium /> Mejora a Premium
+          </button>
           <button
             onClick={onLogout}
             className="flex items-center gap-2 px-2 py-3 text-red-600 hover:bg-red-50 rounded w-full text-left"

@@ -76,7 +76,7 @@ export default function ConverterCard() {
 
           <button
             onClick={convert}
-            className="w-full sm:w-auto px-6 py-3 bg-naranjamandarina text-white rounded-lg font-semibold hover:bg-indigo-700"
+            className="w-full sm:w-auto px-6 py-3 bg-naranjamandarina text-white rounded-lg font-semibold hover:bg-duraznoclaro disabled:opacity-50"
             disabled={loading}
           >
             {loading ? "Convirtiendo..." : "Convertir"}
